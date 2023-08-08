@@ -10,7 +10,7 @@ type UserService struct {
 	userRepository repository.UserRepository
 }
 
-func (s *UserService) FindAllUser(query *query.User) (users *model.User, err error) {
+func (s *UserService) FindAllUser(query *query.User) (users *[]model.User, err error) {
 	return s.userRepository.FindAllUser(query)
 }
 

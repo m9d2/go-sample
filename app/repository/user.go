@@ -9,9 +9,9 @@ import (
 type UserRepository struct {
 }
 
-func (r *UserRepository) FindAllUser(query *query.User) (users *model.User, err error) {
+func (r *UserRepository) FindAllUser(query *query.User) (users *[]model.User, err error) {
 	db := database.GetDB()
-	db.Model(&model.User{}).Preload("UserRole").Find(&users)
+	db.Preload("UserRole").Find(&users)
 	return
 }
 

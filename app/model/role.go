@@ -11,7 +11,3 @@ type Role struct {
 func (Role) TableName() string {
 	return "role"
 }
-
-type RoleVO struct {
-	Name string `json:"name"`
-}
