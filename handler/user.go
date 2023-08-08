@@ -1,10 +1,10 @@
-package controller
+package handler
 
 import (
-	"sample/app/model"
-	"sample/app/query"
-	"sample/app/service"
-	"sample/core/response"
+	"sample/model"
+	"sample/model/vo"
+	"sample/service"
+	"sample/util/response"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,12 +22,12 @@ func InitRouter(g *gin.RouterGroup) {
 }
 
 func (u *UserController) findAll(c *gin.Context) {
-	var userQuery query.User
+	var vo vo.User
 	// if err := c.ShouldBindJSON(&userQuery); err != nil {
 	// 	fmt.Println(err)
 	// 	return
 	// }
-	users, err := u.userService.FindAllUser(&userQuery)
+	users, err := u.userService.FindAllUser(&vo)
 	if err != nil {
 		response.Fail(c, err)
 	} else {

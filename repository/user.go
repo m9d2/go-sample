@@ -1,15 +1,15 @@
 package repository
 
 import (
-	"sample/app/model"
-	"sample/app/query"
 	"sample/database"
+	"sample/model"
+	"sample/model/vo"
 )
 
 type UserRepository struct {
 }
 
-func (r *UserRepository) FindAllUser(query *query.User) (users *[]model.User, err error) {
+func (r *UserRepository) FindAllUser(vo *vo.User) (users *[]model.User, err error) {
 	db := database.GetDB()
 	db.Preload("UserRole").Find(&users)
 	return

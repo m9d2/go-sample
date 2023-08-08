@@ -1,4 +1,4 @@
-package controller
+package handler
 
 type RoleController struct {
 }

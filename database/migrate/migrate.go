@@ -1,9 +1,15 @@
 package migrate
 
+import (
+	"log"
+	"sample/database"
+	models2 "sample/model"
+)
+
 func AutoMigrate() {
-	//db := database.GetDB()
-	//err := db.AutoMigrate(&model.User{}, &model.Role{})
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
+	db := database.GetDB()
+	err := db.AutoMigrate(&models2.User{}, &models2.Role{})
+	if err != nil {
+		log.Fatal(err)
+	}
 }

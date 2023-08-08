@@ -1,11 +1,7 @@
 package model
 
-import (
-	"sample/core/model"
-)
-
 type User struct {
-	model.Model
+	Model
 	Name        string `json:"name" gorm:"size:255"`
 	DeptId      uint   `json:"dept_id"`
 	Username    string `json:"username"`
@@ -19,7 +15,7 @@ type User struct {
 	Status      uint8  `json:"status"`
 	LastLoginIp string `json:"last_login_ip"`
 	Remark      string `json:"remark"`
-	UserRole    []UserRole
+	//UserRole    []UserRole
 }
 
 func (u *User) TableName() string {

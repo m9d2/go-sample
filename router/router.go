@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"sample/app/controller"
+	"sample/handler"
 	"sample/middlerware"
 )
 
@@ -12,11 +12,7 @@ func InitRouter() *gin.Engine {
 	unauthorized := r.Group("v1")
 	unauthorized.Use(middlerware.JWTAuth())
 	{
-		controller.InitRouter(unauthorized)
-	}
-	authorize := r.Group("v1")
-	{
-		authorize.GET("login", controller.Login)
+		handler.InitRouter(unauthorized)
 	}
 	return r
 }
