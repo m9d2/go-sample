@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+const TABLE_NAME_USER = "user"
+
 type User struct {
 	Model
 	Name        string `json:"name" gorm:"size:255"`
@@ -24,10 +26,16 @@ type User struct {
 }
 
 func (u *User) TableName() string {
-	return "user"
+	return TABLE_NAME_USER
 }
 
 func (m *User) BeforeCreate(tx *gorm.DB) error {
+	m.CreatedAt = time.Now()
+	m.UpdateAt = time.Now()
+	return nil
+}
+
+func (m *User) BeforeUpdate(tx *gorm.DB) error {
 	m.CreatedAt = time.Now()
 	m.UpdateAt = time.Now()
 	return nil

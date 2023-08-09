@@ -28,6 +28,7 @@ type FindAllUserRsp struct {
 }
 
 type SaveUserReq struct {
+	ID       uint   `json:"id"`
 	Name     string `json:"name"`
 	DeptId   uint   `json:"dept_id"`
 	Username string `json:"username"`
