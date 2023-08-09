@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"sample/model"
+	"fmt"
 	"sample/model/vo"
 	"sample/service"
 	"sample/util/response"
@@ -22,12 +22,13 @@ func InitRouter(g *gin.RouterGroup) {
 }
 
 func (u *UserController) findAll(c *gin.Context) {
-	var vo vo.User
-	// if err := c.ShouldBindJSON(&userQuery); err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-	users, err := u.userService.FindAllUser(&vo)
+	var req vo.FindAllUserReq
+	if err := c.ShouldBindQuery(&req); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	users, err := u.userService.FindAll(&req)
 	if err != nil {
 		response.Fail(c, err)
 	} else {
@@ -36,11 +37,11 @@ func (u *UserController) findAll(c *gin.Context) {
 }
 
 func (u *UserController) save(c *gin.Context) {
-	var user model.User
+	var user vo.SaveUserReq
 	if err := c.ShouldBindJSON(&user); err != nil {
 		response.Fail(c, err)
 	}
-	e := u.userService.SaveUser(&user)
+	e := u.userService.Save(&user)
 	if e != nil {
 		response.Fail(c, e)
 	} else {

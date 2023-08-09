@@ -1,5 +1,10 @@
 package model
 
+import (
+	"gorm.io/gorm"
+	"time"
+)
+
 type User struct {
 	Model
 	Name        string `json:"name" gorm:"size:255"`
@@ -15,9 +20,15 @@ type User struct {
 	Status      uint8  `json:"status"`
 	LastLoginIp string `json:"last_login_ip"`
 	Remark      string `json:"remark"`
-	//UserRole    []UserRole
+	UserRole    []UserRole
 }
 
 func (u *User) TableName() string {
 	return "user"
+}
+
+func (m *User) BeforeCreate(tx *gorm.DB) error {
+	m.CreatedAt = time.Now()
+	m.UpdateAt = time.Now()
+	return nil
 }

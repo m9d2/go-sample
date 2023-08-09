@@ -1,8 +1,9 @@
 package model
 
 type UserRole struct {
-	User User `gorm:"foreignkey:UserID"`
-	Role Role `gorm:"foreignkey:RoleID"`
+	UserID uint `json:"userId"`
+	RoleID uint `json:"roleId"`
+	Role   Role
 }
 
 func (UserRole *UserRole) TableName() string {
